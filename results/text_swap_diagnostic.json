@@ -1,0 +1,46 @@
+{
+  "experiment": "Matched-description swap diagnostic (100 expressions, seed 43)",
+  "all": {
+    "E2": {
+      "n": 100,
+      "J_correct": 0.20573434489606407,
+      "J_wrong": 0.17858250196893166,
+      "J_margin": 0.02715184292713234,
+      "changed_mask_fraction": 0.04087198435869678,
+      "false_positive_absent": 752,
+      "absent_frames": 1020
+    },
+    "E3": {
+      "n": 100,
+      "J_correct": 0.2978022861722719,
+      "J_wrong": 0.2237938716409855,
+      "J_margin": 0.0740084145312864,
+      "changed_mask_fraction": 0.05246806223631493,
+      "false_positive_absent": 331,
+      "absent_frames": 1020
+    }
+  },
+  "disjoint_annotation_ids": {
+    "n": 60,
+    "E2": {
+      "J_margin": 0.03813181899390945,
+      "95pct_bootstrap_CI": [
+        0.005256763105488415,
+        0.07390290614732178
+      ]
+    },
+    "E3": {
+      "J_margin": 0.05371281823989345,
+      "95pct_bootstrap_CI": [
+        0.003241427727023445,
+        0.11139906359808804
+      ]
+    }
+  },
+  "notes": [
+    "These are local diagnostics, not official MeViS metrics.",
+    "False positives count frames with at least one positive mask pixel.",
+    "Different expressions can share targets; same-video negatives are not guaranteed semantic negatives.",
+    "Bootstrap confidence intervals within each model do not establish significance of the E2-to-E3 difference."
+  ]
+}

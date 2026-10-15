@@ -1,0 +1,55 @@
+project: UniVision-X
+seed: 43
+experiment_matrix:
+  - name: E0_visual_static
+    visual_only: true
+    temporal: false
+    unlabeled_fraction: 0
+    description: 'FastViT + FPN visual-only baseline'
+  - name: E1_text_static
+    visual_only: false
+    temporal: false
+    unlabeled_fraction: 0
+    description: '+ CLIP embedding FiLM'
+  - name: E2_text_temporal
+    visual_only: false
+    temporal: true
+    unlabeled_fraction: 0
+    description: '+ temporal ConvGRU'
+  - name: E3_cross_attention_presence
+    visual_only: false
+    temporal: true
+    presence_head: true
+    text_fusion: token_level_cross_attention
+    status: evaluated_locally
+    description: 'FastViT + CLIP token-level cross-attention + ConvGRU + presence'
+  - name: optional_ssl_pretraining
+    visual_only: false
+    temporal: true
+    status: exploratory_not_part_of_reported_results
+    description: 'Optional self-supervised SimCLR FastViT pretraining, compare same budget'
+  - name: optional_semi_supervised
+    visual_only: false
+    temporal: true
+    unlabeled_fraction: 0.2
+    description: '+ Mean Teacher pseudo-labels, annotations withheld within training set'
+  - name: optional_sam2_distillation
+    visual_only: false
+    temporal: true
+    description: 'Optional SAM2 mask-prompted offline teacher on TRAIN only'
+  - name: optional_lora
+    visual_only: false
+    temporal: true
+    description: 'Pointwise-convolution LoRA adapter ablation'
+robustness_tests:
+  - clean
+  - blur
+  - noise
+  - fog
+  - dark
+notes:
+  - 'MeViS text can refer to motion: first-frame detection alone is not a fair baseline.'
+  - 'Validation valid_u annotations must not contribute to training or pseudo-label generation.'
+  - 'Ablation: keep train budget, image resolution and samples identical.'
+  - 'Report mean +/- std across 3 random seeds if compute allows.'
+  - 'Metrics in local script are proxy; official MeViS evaluator needed for leaderboard.'

@@ -1,0 +1,9 @@
+{
+  "n_expressions": 907,
+  "improved": 612,
+  "degraded": 247,
+  "unchanged": 48,
+  "mean_gain_J": 0.07949618302207918,
+  "median_gain_J": 0.02462051630146242,
+  "source": "Per-expression paired local J scores of full-video MeViS valid_u"
+}

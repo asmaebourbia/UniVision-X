@@ -1,0 +1,13 @@
+{
+  "split": "valid_u",
+  "corruption": "clean",
+  "n_expressions": 907,
+  "local_metrics": {
+    "J": 0.23077410422231331,
+    "Dice": 0.30912572695571067,
+    "boundary_F_proxy": 0.23333525486685197,
+    "J_and_proxy_F": 0.23205467954458264,
+    "fps": 135.00851706564342
+  },
+  "warning": "Resized local metrics; boundary F is a proxy, not official MeViS J&F. FPS excludes preprocessing."
+}

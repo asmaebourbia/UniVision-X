@@ -1,0 +1,15 @@
+digraph ResearchWorkflow {
+ graph [rankdir=LR, bgcolor="white", pad=0.3, ranksep=0.5, nodesep=0.25, fontname="DejaVu Sans", labelloc="t", label="Experimental workflow  |  reproducible local evaluation", fontsize=19, fontcolor="#1c2940", splines=ortho];
+ node [shape=box, style="filled,rounded", fontname="DejaVu Sans", fontsize=10, margin="0.16,0.11", color="#b4c4d3", fillcolor="#eef4fa", fontcolor="#27364a"];
+ edge [color="#677e94", penwidth=1.5, arrowsize=0.7];
+ data [label="MeViS v2\ntrain / valid_u", fillcolor="#dfeaff"];
+ cache [label="CLIP cache\nE2 pooled / E3 token-level", fillcolor="#fff0d1"];
+ train [label="Train on short video clips\nFastViT (frozen) + trainable heads", fillcolor="#ddeff3"];
+ selection [label="Validation clips\nSelect best checkpoint", fillcolor="#e7f1f9"];
+ eval [label="Full-video evaluation\n907 expressions; clean inputs", fillcolor="#d5f0e7", color="#78b9a5"];
+ export [label="Local IoU / Dice / F proxy\nExport PNG masks", fillcolor="#d2efe5"];
+ report [label="Paired E2 vs E3\nText-swap + visual diagnosis", fillcolor="#f2e8fa"];
+ data -> cache -> train -> selection -> eval -> export -> report;
+ data -> train [constraint=false];
+ data -> eval [constraint=false];
+}

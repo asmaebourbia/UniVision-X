@@ -1,0 +1,39 @@
+digraph UniVisionX {
+  graph [rankdir=LR, bgcolor="white", pad=0.35, nodesep=0.36, ranksep=0.75, fontname="DejaVu Sans", labelloc="t", label="UniVision-X  |  Architecture evolution", fontsize=21, fontcolor="#1c2940", splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, margin="0.19,0.12", color="#c7d4e2", fillcolor="#f0f5f9", fontcolor="#192839"];
+  edge [color="#64748b", penwidth=1.55, arrowsize=0.72];
+
+  video [label="Video frames\nRGB clips", fillcolor="#e5efff", color="#9bbce5"];
+  visual [label="FastViT-T8  (frozen)\nMulti-scale FPN features", fillcolor="#d6e8ff", color="#8cafdb"];
+  text [label="Referring expression", fillcolor="#fff3dd", color="#d9b976"];
+  clip [label="CLIP text encoder (frozen)\nPre-compute embeddings", fillcolor="#ffe6b9", color="#d9ac5e"];
+  video -> visual;
+  text -> clip;
+  subgraph cluster_e2 {
+    label="E2  |  global language conditioning";
+    fontcolor="#4d5970"; fontsize=13; style="rounded,dashed"; color="#b7c4d3"; margin=16;
+    pooled [label="Global CLIP vector\n512 dimensions", fillcolor="#fff3dd"];
+    film [label="FiLM modulation\nChannel-wise scale / shift", fillcolor="#e9e5fb", color="#a9a1dc"];
+    gru2 [label="ConvGRU\nTemporal state", fillcolor="#e9e5fb", color="#a9a1dc"];
+    seg2 [label="Segmentation head\nE2 binary mask", fillcolor="#f4f1ff"];
+    pooled -> film -> gru2 -> seg2;
+  }
+  subgraph cluster_e3 {
+    label="E3  |  spatial text grounding + target presence";
+    fontcolor="#136f64"; fontsize=13; style="rounded"; color="#91cbbf"; margin=16;
+    tokens [label="CLIP token states\nL x 512", fillcolor="#fff3dd"];
+    attn [label="Spatial cross-attention\nVisual queries / text keys-values", fillcolor="#d1f3ea", color="#74bdab"];
+    gru3 [label="ConvGRU\nTemporal state", fillcolor="#d1f3ea", color="#74bdab"];
+    seg3 [label="Segmentation head\nPixel logits", fillcolor="#e0f8ee", color="#92cbb5"];
+    presence [label="Presence head\nVisible / absent logits", fillcolor="#fbe6ee", color="#dba3b7"];
+    output [label="Presence-gated\nE3 binary masks", fillcolor="#bee8d8", color="#56aa92", penwidth=2];
+    tokens -> attn -> gru3;
+    gru3 -> seg3 -> output;
+    gru3 -> presence -> output;
+    tokens -> presence [constraint=false];
+  }
+  clip -> pooled [style=dashed];
+  clip -> tokens [style=dashed];
+  visual -> film [style=dashed];
+  visual -> attn [style=dashed];
+}

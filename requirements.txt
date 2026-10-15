@@ -1,0 +1,15 @@
+# Install torch + torchvision for YOUR CUDA version before this file.
+# torch and torchvision are deliberately not pinned here.
+timm>=1.0.12,<1.1
+transformers>=4.48,<5
+pycocotools>=2.0.8
+Pillow>=10
+numpy>=1.24,<3
+scipy>=1.11
+PyYAML>=6
+tqdm>=4.66
+pytest>=8
+opencv-python-headless>=4.8
+safetensors>=0.4
+# Optional diffusion: pip install diffusers accelerate
+# Optional SAM 2: see https://github.com/facebookresearch/sam2

@@ -1,0 +1,18 @@
+{
+  "split": "valid_u",
+  "corruption": "clean",
+  "n_expressions": 907,
+  "local_metrics": {
+    "J": 0.31027028724439243,
+    "Dice": 0.39459010917309323,
+    "boundary_F_proxy": 0.3278977698232918,
+    "J_and_proxy_F": 0.3190840285338421,
+    "fps_model_only": 124.05414443299317
+  },
+  "present_frame_J_mean": 0.30878107727356635,
+  "absent_frames": 5790,
+  "false_positive_absent_frames": 3388,
+  "false_positive_absent_rate": 0.585146804835924,
+  "presence_threshold": 0.5,
+  "warning": "Resized local J/Dice and boundary proxy; NOT official MeViS J&F. FPS excludes image load."
+}

@@ -1,0 +1,4 @@
+image,video,exp_id,frame,frame_selection,text,target_present,frame_J_E2,frame_J_E3,expression_J_E2,expression_J_E3
+assets/qualitative/panda_failure_e2_vs_e3.png,4a9c4d01922f,29,00053,central-nearest target-present frame,The person providing food to the panda.,True,0.000829,0.0,0.03536475106196719,0.6562417845349456
+assets/qualitative/dog_e2_vs_e3.png,4c18b41f0691,5,00025,central-nearest target-present frame,A dog facing off with a monkey and constantly changing its position.,True,0.35068,0.387117,0.3444907675385158,0.42959036585154425
+assets/qualitative/rabbit_e2_vs_e3.png,ee6855dcefee,7,00022,central-nearest target-present frame,The rabbit that shifted its position.,True,0.040889,0.458633,0.16131473557841033,0.5234204382093686
